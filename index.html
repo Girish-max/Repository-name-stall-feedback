@@ -181,7 +181,6 @@ event.target.classList.add("selected")
 
 }
 
-
 async function submitFeedback(){
 
 const empId = document.getElementById("empId").value.trim()
@@ -219,7 +218,17 @@ comments: comments
 
 })
 
-const data = await response.json()
+if(!response.ok){
+
+throw new Error("Flow not triggered")
+
+}
+
+let data = {}
+
+try{
+data = await response.json()
+}catch{}
 
 if(data.fullName){
 
@@ -251,6 +260,8 @@ document.getElementById("result").innerHTML =
 }
 
 }
+```
+
 
 </script>
 
